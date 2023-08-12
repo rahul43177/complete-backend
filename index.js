@@ -1,24 +1,20 @@
-import http from 'http'
-import * as obj from './gfName.js'
-import {loveCalculator} from './loveCalculator.js'
-import fs from 'fs'
-import path from 'path';
-import dotenv from 'dotenv'
+import express from "express";
+import dotenv from "dotenv";
+
+
 dotenv.config();
-console.log(path.dirname("/home/index.js"))
-console.log(loveCalculator())
-const { gfName, gfName2, gfName3 } = obj
-console.log(gfName)
 
-const home = fs.readFileSync('./index.html')
+const app = express();
 
-const server = http.createServer((req, res) => {
-    if(req.url == '/') {
-        res.end(home)
-    }
+app.get("/getProducts", function (req, res) {
+//   const nameArr =["Rahul" , "Mishra" , "Rohan"]
+//   const individualName = nameArr.map((el)=> el + " Mishra")
+//   res.send(individualName);
+    
+//     res.send({status : true , name : "Rahul Mishra"})
+    res.json({status : true , name : "Rahul Mishra"})
 })
 
-server.listen(process.env.PORT , ()=> {
-    console.log("server is running on port 5000")
-})
-
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
+});
